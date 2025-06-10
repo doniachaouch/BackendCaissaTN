@@ -4,13 +4,24 @@ import org.springframework.web.ErrorResponseException;
 
 public class BusinessException extends ErrorResponseException {
 
+    private final BusinessExceptionReason reason;
+
     /**
-     * Constructor accepting an exception reason.
+     * Constructeur avec raison.
      *
-     * @param reason the reason of the exception
+     * @param reason la raison de l'exception
      */
     public BusinessException(final BusinessExceptionReason reason) {
         super(reason.getStatusCode(), reason.getBody(), null);
+        this.reason = reason;
     }
 
+    /**
+     * Retourne la raison de l'exception métier.
+     *
+     * @return la raison
+     */
+    public BusinessExceptionReason getReason() {
+        return this.reason;
+    }
 }
